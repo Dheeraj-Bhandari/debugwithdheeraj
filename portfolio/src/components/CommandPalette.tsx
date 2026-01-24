@@ -66,11 +66,11 @@ const CommandPalette = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-8 right-8 z-40 px-4 py-2 bg-terminal/90 backdrop-blur-sm border border-accent/30 rounded-lg text-accent font-mono text-sm hover:border-accent/50 transition-all shadow-lg shadow-accent/10 flex items-center gap-2"
+        className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 px-3 py-2 md:px-4 md:py-2 bg-terminal/90 backdrop-blur-sm border border-accent/30 rounded-lg text-accent font-mono text-xs md:text-sm hover:border-accent/50 transition-all shadow-lg shadow-accent/10 flex items-center gap-2"
       >
-        <FaTerminal />
-        <span>Press</span>
-        <kbd className="px-2 py-1 bg-accent/20 rounded text-xs">Ctrl+K</kbd>
+        <FaTerminal className="text-sm md:text-base" />
+        <span className="hidden sm:inline">Press</span>
+        <kbd className="px-1.5 py-0.5 md:px-2 md:py-1 bg-accent/20 rounded text-xs">Ctrl+K</kbd>
       </motion.button>
 
       {/* Command Palette */}
@@ -83,7 +83,7 @@ const CommandPalette = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/95 backdrop-blur-md z-50"
             />
 
             {/* Palette */}
@@ -91,12 +91,12 @@ const CommandPalette = () => {
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="fixed top-1/4 left-1/2 -translate-x-1/2 w-full max-w-2xl z-50 px-4"
+              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl z-50 max-h-[90vh] flex flex-col"
             >
-              <div className="bg-terminal border-2 border-accent/50 rounded-xl shadow-2xl shadow-accent/20 overflow-hidden">
+              <div className="bg-terminal/95 backdrop-blur-xl border-2 border-accent/50 rounded-xl shadow-2xl shadow-accent/20 overflow-hidden flex flex-col max-h-full">
                 {/* Header */}
-                <div className="flex items-center gap-3 px-6 py-4 border-b border-accent/20">
-                  <FaTerminal className="text-accent text-xl" />
+                <div className="flex items-center gap-2 md:gap-3 px-3 md:px-6 py-2.5 md:py-4 border-b border-accent/20 flex-shrink-0">
+                  <FaTerminal className="text-accent text-sm md:text-xl flex-shrink-0" />
                   <input
                     type="text"
                     value={search}
@@ -104,15 +104,20 @@ const CommandPalette = () => {
                       setSearch(e.target.value)
                       setSelectedIndex(0)
                     }}
-                    placeholder="Type a command or search..."
-                    className="flex-1 bg-transparent text-white outline-none font-mono"
+                    placeholder="Search..."
+                    className="flex-1 bg-transparent text-white outline-none font-mono text-sm md:text-base placeholder:text-gray-600"
                     autoFocus
                   />
-                  <kbd className="px-2 py-1 bg-accent/20 rounded text-accent text-xs font-mono">ESC</kbd>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="flex-shrink-0"
+                  >
+                    <kbd className="px-1.5 py-0.5 md:px-2 md:py-1 bg-accent/20 rounded text-accent text-xs font-mono">ESC</kbd>
+                  </button>
                 </div>
 
                 {/* Commands */}
-                <div className="max-h-96 overflow-y-auto">
+                <div className="overflow-y-auto flex-1 md:max-h-96">
                   {filteredCommands.length > 0 ? (
                     filteredCommands.map((cmd, index) => (
                       <motion.button
@@ -124,37 +129,38 @@ const CommandPalette = () => {
                           cmd.action()
                           setIsOpen(false)
                         }}
-                        className={`w-full flex items-center gap-4 px-6 py-4 text-left transition-all ${
+                        onMouseEnter={() => setSelectedIndex(index)}
+                        className={`w-full flex items-center gap-3 md:gap-4 px-3 md:px-6 py-2.5 md:py-4 text-left transition-all ${
                           index === selectedIndex
                             ? 'bg-accent/20 text-accent'
                             : 'text-gray-400 hover:bg-accent/10 hover:text-accent'
                         }`}
                       >
-                        <cmd.icon className="text-xl" />
-                        <span className="font-mono">{cmd.label}</span>
+                        <cmd.icon className="text-sm md:text-xl flex-shrink-0" />
+                        <span className="font-mono text-sm md:text-base">{cmd.label}</span>
                         {index === selectedIndex && (
-                          <kbd className="ml-auto px-2 py-1 bg-accent/20 rounded text-xs">↵</kbd>
+                          <kbd className="ml-auto px-1.5 py-0.5 md:px-2 md:py-1 bg-accent/20 rounded text-xs flex-shrink-0 hidden md:inline-block">↵</kbd>
                         )}
                       </motion.button>
                     ))
                   ) : (
-                    <div className="px-6 py-8 text-center text-gray-500 font-mono">
+                    <div className="px-3 md:px-6 py-6 md:py-8 text-center text-gray-500 font-mono text-sm md:text-base">
                       No commands found
                     </div>
                   )}
                 </div>
 
-                {/* Footer */}
-                <div className="px-6 py-3 border-t border-accent/20 flex items-center gap-4 text-xs font-mono text-gray-500">
-                  <span className="flex items-center gap-2">
+                {/* Footer - Hide on mobile */}
+                <div className="hidden md:flex px-6 py-3 border-t border-accent/20 items-center gap-4 text-xs font-mono text-gray-500 flex-shrink-0">
+                  <span className="flex items-center gap-2 whitespace-nowrap">
                     <kbd className="px-2 py-1 bg-accent/10 rounded">↑↓</kbd>
                     Navigate
                   </span>
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 whitespace-nowrap">
                     <kbd className="px-2 py-1 bg-accent/10 rounded">↵</kbd>
                     Select
                   </span>
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 whitespace-nowrap">
                     <kbd className="px-2 py-1 bg-accent/10 rounded">ESC</kbd>
                     Close
                   </span>

@@ -16,7 +16,7 @@ const HeroEnhanced = () => {
   
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const opacity = useTransform(scrollY, [0, 800], [1, 0])
 
   // Typing effect for name
   useEffect(() => {
