@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import { contactInfo } from '../data/portfolioData'
 
 const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -34,18 +35,18 @@ const Contact = () => {
         >
           <div className="grid md:grid-cols-2 gap-6">
             <a
-              href="mailto:digitaldk.in@gmail.com"
+              href={`mailto:${contactInfo.email}`}
               className="flex items-center gap-4 p-4 bg-accent/5 border border-accent/20 rounded-lg hover:border-accent/50 hover:bg-accent/10 transition-colors group"
             >
               <FaEnvelope className="text-3xl text-accent" />
               <div className="text-left">
                 <div className="text-gray-400 text-sm font-mono">Email</div>
-                <div className="text-white group-hover:text-accent transition-colors">digitaldk.in@gmail.com</div>
+                <div className="text-white group-hover:text-accent transition-colors">{contactInfo.email}</div>
               </div>
             </a>
 
             <a
-              href="https://linkedin.com/in/digitaldk"
+              href={contactInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-accent/5 border border-accent/20 rounded-lg hover:border-accent/50 hover:bg-accent/10 transition-colors group"
@@ -53,12 +54,12 @@ const Contact = () => {
               <FaLinkedin className="text-3xl text-accent" />
               <div className="text-left">
                 <div className="text-gray-400 text-sm font-mono">LinkedIn</div>
-                <div className="text-white group-hover:text-accent transition-colors">linkedin.com/in/digitaldk</div>
+                <div className="text-white group-hover:text-accent transition-colors">{contactInfo.linkedin.replace('https://', '')}</div>
               </div>
             </a>
 
             <a
-              href="https://github.com/Dheeraj-Bhandari"
+              href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-accent/5 border border-accent/20 rounded-lg hover:border-accent/50 hover:bg-accent/10 transition-colors group"
@@ -66,12 +67,12 @@ const Contact = () => {
               <FaGithub className="text-3xl text-accent" />
               <div className="text-left">
                 <div className="text-gray-400 text-sm font-mono">GitHub</div>
-                <div className="text-white group-hover:text-accent transition-colors">github.com/Dheeraj-Bhandari</div>
+                <div className="text-white group-hover:text-accent transition-colors">{contactInfo.github.replace('https://', '')}</div>
               </div>
             </a>
 
             <a
-              href="https://twitter.com/dherajbhandari"
+              href={contactInfo.twitter}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-accent/5 border border-accent/20 rounded-lg hover:border-accent/50 hover:bg-accent/10 transition-colors group"
@@ -79,7 +80,7 @@ const Contact = () => {
               <FaXTwitter className="text-3xl text-accent" />
               <div className="text-left">
                 <div className="text-gray-400 text-sm font-mono">Twitter/X</div>
-                <div className="text-white group-hover:text-accent transition-colors">twitter.com/dherajbhandari</div>
+                <div className="text-white group-hover:text-accent transition-colors">{contactInfo.twitter.replace('https://', '')}</div>
               </div>
             </a>
 
@@ -87,7 +88,7 @@ const Contact = () => {
               <FaMapMarkerAlt className="text-3xl text-accent" />
               <div className="text-left">
                 <div className="text-gray-400 text-sm font-mono">Location</div>
-                <div className="text-white">Bathinda, Punjab, India</div>
+                <div className="text-white">{contactInfo.location}</div>
               </div>
             </div>
           </div>

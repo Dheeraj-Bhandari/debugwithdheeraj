@@ -12,10 +12,18 @@ export default {
         accent: '#22c55e',
         'accent-dark': '#16a34a',
         terminal: '#0f0f0f',
+        // Amazon color palette
+        'amazon-orange': '#FF9900',
+        'amazon-orange-dark': '#E88B00',
+        'amazon-dark': '#232F3E',
+        'amazon-blue': '#37475A',
+        'amazon-light': '#F3F3F3',
       },
       fontFamily: {
         sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        // Amazon Ember font with fallbacks
+        amazon: ['Amazon Ember', 'Arial', 'sans-serif'],
       },
       animation: {
         'typing': 'typing 3.5s steps(40, end)',

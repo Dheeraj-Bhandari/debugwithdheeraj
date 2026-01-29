@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope, FaTerminal } from 'react-i
 import { FaXTwitter } from 'react-icons/fa6'
 import profileImage from '../assets/images/dheeraj_kumar.png'
 import resumePDF from '../assets/resume/Dheeraj_Kumar_SDE.pdf'
+import { contactInfo } from '../data/portfolioData'
 
 const HeroEnhanced = () => {
   const [nameText, setNameText] = useState('')
@@ -268,11 +269,11 @@ const HeroEnhanced = () => {
                     </div>
                     <div className="pl-4 flex gap-4 mb-4">
                       {[
-                        { icon: FaLinkedin, href: "https://linkedin.com/in/digitaldk", label: "LinkedIn" },
-                        { icon: FaGithub, href: "https://github.com/Dheeraj-Bhandari", label: "GitHub" },
-                        { icon: FaXTwitter, href: "https://twitter.com/dherajbhandari", label: "Twitter" },
-                        { icon: FaYoutube, href: "https://youtube.com/@debugwithdheeraj", label: "YouTube" },
-                        { icon: FaEnvelope, href: "mailto:digitaldk.in@gmail.com", label: "Email" }
+                        { icon: FaLinkedin, href: contactInfo.linkedin, label: "LinkedIn" },
+                        { icon: FaGithub, href: contactInfo.github, label: "GitHub" },
+                        { icon: FaXTwitter, href: contactInfo.twitter, label: "Twitter" },
+                        { icon: FaYoutube, href: contactInfo.youtube, label: "YouTube" },
+                        { icon: FaEnvelope, href: `mailto:${contactInfo.email}`, label: "Email" }
                       ].map((social, index) => (
                         <motion.a
                           key={index}

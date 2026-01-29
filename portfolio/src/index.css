@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+/* Amazon Ember font - using system fonts as fallback since Amazon Ember is proprietary */
+/* We'll use Arial which closely matches Amazon's typography */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,6 +66,83 @@ body {
     }
   }
 
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* Terminal animations */
+  .animate-terminal-fade-in {
+    animation: terminalFadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes terminalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-terminal-slide-up {
+    animation: terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes terminalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-line-appear {
+    animation: lineAppear 0.15s ease-out forwards;
+  }
+
+  @keyframes lineAppear {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Smooth transitions */
+  .transition-terminal {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-terminal-fast {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* GPU-accelerated animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
   .perspective-1000 {
     perspective: 1000px;
   }
@@ -73,6 +153,195 @@ body {
 
   .backface-hidden {
     backface-visibility: hidden;
+  }
+
+  /* Mobile-specific utilities */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .overscroll-contain {
+    overscroll-behavior: contain;
+  }
+
+  /* Terminal Color Scheme - WCAG AA Compliant */
+  .terminal-bg {
+    background-color: #0d1117;
+  }
+
+  .terminal-text {
+    color: #e6edf3;
+  }
+
+  .terminal-prompt {
+    color: #7ee787;
+  }
+
+  .terminal-command {
+    color: #79c0ff;
+  }
+
+  .terminal-output {
+    color: #e6edf3;
+  }
+
+  .terminal-error {
+    color: #ff7b72;
+  }
+
+  .terminal-info {
+    color: #79c0ff;
+  }
+
+  .terminal-success {
+    color: #7ee787;
+  }
+
+  .terminal-warning {
+    color: #ffa657;
+  }
+
+  .terminal-link {
+    color: #58a6ff;
+  }
+
+  .terminal-link:hover {
+    color: #79c0ff;
+  }
+
+  /* Syntax highlighting colors */
+  .terminal-json-key {
+    color: #d2a8ff;
+  }
+
+  .terminal-json-string {
+    color: #a5d6ff;
+  }
+
+  .terminal-json-number {
+    color: #ffa657;
+  }
+
+  .terminal-json-boolean {
+    color: #ff7b72;
+  }
+
+  .terminal-json-null {
+    color: #8b949e;
+  }
+
+  .terminal-json-bracket {
+    color: #79c0ff;
+  }
+
+  /* Markdown colors */
+  .terminal-md-header {
+    color: #79c0ff;
+  }
+
+  .terminal-md-bold {
+    color: #ffffff;
+  }
+
+  .terminal-md-italic {
+    color: #c9d1d9;
+  }
+
+  .terminal-md-code {
+    color: #ffa657;
+    background-color: #161b22;
+  }
+
+  .terminal-md-link {
+    color: #58a6ff;
+  }
+
+  /* Directory listing colors */
+  .terminal-dir {
+    color: #79c0ff;
+  }
+
+  .terminal-file {
+    color: #e6edf3;
+  }
+
+  .terminal-executable {
+    color: #7ee787;
+  }
+
+  .terminal-hidden {
+    color: #8b949e;
+  }
+
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Modal animations */
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -92,4 +361,73 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #16a34a;
+}
+
+/* Amazon-style scrollbar for Amazon portfolio */
+.amazon-scrollbar::-webkit-scrollbar,
+.amazon-layout::-webkit-scrollbar,
+body:has(.amazon-layout)::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.amazon-scrollbar::-webkit-scrollbar-track,
+.amazon-layout::-webkit-scrollbar-track,
+body:has(.amazon-layout)::-webkit-scrollbar-track {
+  background: #f3f3f3;
+  border-radius: 0;
+}
+
+.amazon-scrollbar::-webkit-scrollbar-thumb,
+.amazon-layout::-webkit-scrollbar-thumb,
+body:has(.amazon-layout)::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+  border: 2px solid #f3f3f3;
+}
+
+.amazon-scrollbar::-webkit-scrollbar-thumb:hover,
+.amazon-layout::-webkit-scrollbar-thumb:hover,
+body:has(.amazon-layout)::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Amazon portfolio smooth transitions */
+.amazon-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.amazon-smooth-fast {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth sidebar animations */
+.amazon-sidebar-enter {
+  animation: amazonSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes amazonSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.amazon-sidebar-exit {
+  animation: amazonSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes amazonSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }

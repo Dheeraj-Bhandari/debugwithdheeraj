@@ -3,8 +3,13 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope, FaTerminal, FaXTwitter } from 'react-icons/fa6'
 import profileImage from '../assets/images/dheeraj_kumar.png'
 import resumePDF from '../assets/resume/Dheeraj_Kumar_SDE.pdf'
+import { contactInfo } from '../data/portfolioData'
 
-const Hero = () => {
+interface HeroProps {
+  onToggleTerminal?: () => void
+}
+
+const Hero = ({ onToggleTerminal }: HeroProps) => {
   const [text, setText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
   const fullText = "Senior Software Engineer | AI/ML Systems Architect"
@@ -101,7 +106,7 @@ const Hero = () => {
                 
                 <div className="pl-4 flex gap-4 mt-2 mb-4">
                   <a
-                    href="https://linkedin.com/in/digitaldk"
+                    href={contactInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-accent transition-colors text-xl"
@@ -110,7 +115,7 @@ const Hero = () => {
                     <FaLinkedin />
                   </a>
                   <a
-                    href="https://github.com/Dheeraj-Bhandari"
+                    href={contactInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-accent transition-colors text-xl"
@@ -119,7 +124,7 @@ const Hero = () => {
                     <FaGithub />
                   </a>
                   <a
-                    href="https://twitter.com/dherajbhandari"
+                    href={contactInfo.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-accent transition-colors text-xl"
@@ -128,7 +133,7 @@ const Hero = () => {
                     <FaXTwitter />
                   </a>
                   <a
-                    href="https://youtube.com/@debugwithdheeraj"
+                    href={contactInfo.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-accent transition-colors text-xl"
@@ -137,7 +142,7 @@ const Hero = () => {
                     <FaYoutube />
                   </a>
                   <a
-                    href="mailto:digitaldk.in@gmail.com"
+                    href={`mailto:${contactInfo.email}`}
                     className="text-gray-400 hover:text-accent transition-colors text-xl"
                     title="Email"
                   >
@@ -159,11 +164,22 @@ const Hero = () => {
                   </a>
                   <a
                     href={resumePDF}
-                    download="Dheeraj_Kumar_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-black font-semibold rounded transition-colors"
                   >
-                    Download CV
+                    View Resume
                   </a>
+                  {onToggleTerminal && (
+                    <button
+                      onClick={onToggleTerminal}
+                      className="px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-black font-semibold rounded transition-colors flex items-center gap-2"
+                      aria-label="Open Terminal View"
+                    >
+                      <FaTerminal />
+                      <span>Terminal View</span>
+                    </button>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-2 pt-4 border-t border-accent/20">

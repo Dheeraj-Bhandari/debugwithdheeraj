@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaYoutube, FaTerminal, FaXTwitter } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -25,8 +26,16 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="text-gray-500 text-xs font-mono">
-            Built with React + Vite + Tailwind
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <Link 
+              to="/amazon" 
+              className="text-[#FF9900] hover:text-[#E88B00] transition-colors text-sm font-mono"
+            >
+              🛒 View Amazon Store
+            </Link>
+            <div className="text-gray-500 text-xs font-mono">
+              Built with React + Vite + Tailwind
+            </div>
           </div>
         </div>
       </div>

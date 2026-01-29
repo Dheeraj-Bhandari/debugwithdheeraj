@@ -2,16 +2,20 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaTerminal, FaUser, FaBriefcase, FaCode, FaProjectDiagram, FaTrophy, FaEnvelope } from 'react-icons/fa'
 
-const commands = [
-  { id: 'about', label: 'About Me', icon: FaUser, action: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
-  { id: 'experience', label: 'Experience', icon: FaBriefcase, action: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) },
-  { id: 'tech', label: 'Tech Stack', icon: FaCode, action: () => document.getElementById('tech')?.scrollIntoView({ behavior: 'smooth' }) },
-  { id: 'projects', label: 'Projects', icon: FaProjectDiagram, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
-  { id: 'achievements', label: 'Achievements', icon: FaTrophy, action: () => document.getElementById('achievements')?.scrollIntoView({ behavior: 'smooth' }) },
-  { id: 'contact', label: 'Contact', icon: FaEnvelope, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
-]
+interface CommandPaletteProps {
+  onToggleTerminal?: () => void
+}
 
-const CommandPalette = () => {
+const CommandPalette = ({ onToggleTerminal }: CommandPaletteProps) => {
+  const commands = [
+    { id: 'terminal', label: 'Terminal View', icon: FaTerminal, action: () => onToggleTerminal?.() },
+    { id: 'about', label: 'About Me', icon: FaUser, action: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'experience', label: 'Experience', icon: FaBriefcase, action: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'tech', label: 'Tech Stack', icon: FaCode, action: () => document.getElementById('tech')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'projects', label: 'Projects', icon: FaProjectDiagram, action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'achievements', label: 'Achievements', icon: FaTrophy, action: () => document.getElementById('achievements')?.scrollIntoView({ behavior: 'smooth' }) },
+    { id: 'contact', label: 'Contact', icon: FaEnvelope, action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
+  ]
   const [isOpen, setIsOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -71,6 +75,8 @@ const CommandPalette = () => {
         <FaTerminal className="text-sm md:text-base" />
         <span className="hidden sm:inline">Press</span>
         <kbd className="px-1.5 py-0.5 md:px-2 md:py-1 bg-accent/20 rounded text-xs">Ctrl+K</kbd>
+        <span className="hidden sm:inline text-gray-500">or</span>
+        <kbd className="px-1.5 py-0.5 md:px-2 md:py-1 bg-accent/20 rounded text-xs">Ctrl+`</kbd>
       </motion.button>
 
       {/* Command Palette */}
@@ -83,16 +89,16 @@ const CommandPalette = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/95 backdrop-blur-md z-50"
-            />
-
-            {/* Palette */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl z-50 max-h-[90vh] flex flex-col"
+              className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center"
             >
+              {/* Palette */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-2xl mx-4 max-h-[90vh] flex flex-col"
+              >
               <div className="bg-terminal/95 backdrop-blur-xl border-2 border-accent/50 rounded-xl shadow-2xl shadow-accent/20 overflow-hidden flex flex-col max-h-full">
                 {/* Header */}
                 <div className="flex items-center gap-2 md:gap-3 px-3 md:px-6 py-2.5 md:py-4 border-b border-accent/20 flex-shrink-0">
@@ -166,6 +172,7 @@ const CommandPalette = () => {
                   </span>
                 </div>
               </div>
+              </motion.div>
             </motion.div>
           </>
         )}
