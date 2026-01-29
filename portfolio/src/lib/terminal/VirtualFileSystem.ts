@@ -71,7 +71,7 @@ Type 'help' for more information or start exploring!
         'about.txt': {
           name: 'about.txt',
           type: 'file',
-          content: 'About content placeholder',
+          content: personalInfo.bio,
         },
         experience: {
           name: 'experience',

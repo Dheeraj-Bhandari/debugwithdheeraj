@@ -179,10 +179,10 @@ export function mapSkill(rawSkill: RawSkillData): Skill {
   // Map skill names to actual image paths
   const skillImageMap: Record<string, string> = {
     // Languages
-    'javascript': '/src/assets/images/nodejs.webp', // Using Node.js image for JavaScript
+    'javascript': '/src/assets/images/nodejs.webp',
     'typescript': '/src/assets/images/typescript.webp',
     'python': '/src/assets/images/langchain.webp',
-    'java': '/src/assets/images/reactjs.png', // Placeholder - need Java image
+    'java': '/src/assets/images/java.webp',
     'sql': '/src/assets/images/mongodb.jpg',
     'bash': '/src/assets/images/nodejs.webp',
     
@@ -190,8 +190,8 @@ export function mapSkill(rawSkill: RawSkillData): Skill {
     'react': '/src/assets/images/reactjs.png',
     'next-js': '/src/assets/images/reactjs.png',
     'nextjs': '/src/assets/images/reactjs.png',
-    'vue-js': '/src/assets/images/reactjs.png', // Placeholder - need Vue image
-    'vuejs': '/src/assets/images/reactjs.png', // Placeholder - need Vue image
+    'vue-js': '/src/assets/images/reactjs.png',
+    'vuejs': '/src/assets/images/reactjs.png',
     'redux': '/src/assets/images/reactjs.png',
     'material-ui': '/src/assets/images/reactjs.png',
     'vite': '/src/assets/images/reactjs.png',
@@ -600,8 +600,6 @@ export class AmazonPortfolioDataMapper {
         role: 'Machine Learning Data Associate',
         duration: 'Aug 2020 - Aug 2022',
         location: 'Chennai, India',
-        // TODO: Add amazon.webp to /src/assets/images/ directory
-        // Using AWS logo as temporary fallback until amazon.webp is added
         logo: '/src/assets/images/amazon.webp',
         achievements: [
           'Recognized as Top Performer with 2 awards for ML training data projects',

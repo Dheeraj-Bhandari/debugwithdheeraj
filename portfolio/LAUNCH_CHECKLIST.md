@@ -1,6 +1,6 @@
-# Launch Checklist 🚀
+# Pre-Launch Checklist 🚀
 
-Use this checklist before deploying your portfolio to production.
+Complete this checklist before deploying your portfolio to production.
 
 ## Pre-Launch Checklist
 
