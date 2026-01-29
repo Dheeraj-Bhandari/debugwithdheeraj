@@ -26,6 +26,21 @@ import {
   cacheProjects,
 } from './cacheUtils';
 
+// Import images for proper bundling
+import nodejsImg from '../../assets/images/nodejs.webp';
+import typescriptImg from '../../assets/images/typescript.webp';
+import langchainImg from '../../assets/images/langchain.webp';
+import javaImg from '../../assets/images/java.webp';
+import mongodbImg from '../../assets/images/mongodb.jpg';
+import reactjsImg from '../../assets/images/reactjs.png';
+import expressjsImg from '../../assets/images/expressjs.webp';
+import awsImg from '../../assets/images/aws.webp';
+import dockerImg from '../../assets/images/docker.png';
+import neuraltalkai from '../../assets/images/neuraltalkai.png';
+import monsterapi from '../../assets/images/monsterapi.png';
+import heyneo from '../../assets/images/heyneo.jpg';
+import amazonImg from '../../assets/images/amazon.webp';
+
 /**
  * Raw portfolio data structure (from existing components)
  */
@@ -176,59 +191,59 @@ export function mapSkill(rawSkill: RawSkillData): Skill {
   const proficiency = calculateProficiencyLevel(rawSkill.yearsOfExperience);
   const isPrime = isSkillPrime(rawSkill.yearsOfExperience);
   
-  // Map skill names to actual image paths
+  // Map skill names to actual image paths (using imported images)
   const skillImageMap: Record<string, string> = {
     // Languages
-    'javascript': '/src/assets/images/nodejs.webp',
-    'typescript': '/src/assets/images/typescript.webp',
-    'python': '/src/assets/images/langchain.webp',
-    'java': '/src/assets/images/java.webp',
-    'sql': '/src/assets/images/mongodb.jpg',
-    'bash': '/src/assets/images/nodejs.webp',
+    'javascript': nodejsImg,
+    'typescript': typescriptImg,
+    'python': langchainImg,
+    'java': javaImg,
+    'sql': mongodbImg,
+    'bash': nodejsImg,
     
     // Frontend
-    'react': '/src/assets/images/reactjs.png',
-    'next-js': '/src/assets/images/reactjs.png',
-    'nextjs': '/src/assets/images/reactjs.png',
-    'vue-js': '/src/assets/images/reactjs.png',
-    'vuejs': '/src/assets/images/reactjs.png',
-    'redux': '/src/assets/images/reactjs.png',
-    'material-ui': '/src/assets/images/reactjs.png',
-    'vite': '/src/assets/images/reactjs.png',
+    'react': reactjsImg,
+    'next-js': reactjsImg,
+    'nextjs': reactjsImg,
+    'vue-js': reactjsImg,
+    'vuejs': reactjsImg,
+    'redux': reactjsImg,
+    'material-ui': reactjsImg,
+    'vite': reactjsImg,
     
     // Backend
-    'node-js': '/src/assets/images/nodejs.webp',
-    'nodejs': '/src/assets/images/nodejs.webp',
-    'express': '/src/assets/images/expressjs.webp',
-    'django': '/src/assets/images/langchain.webp',
-    'flask': '/src/assets/images/langchain.webp',
-    'fastapi': '/src/assets/images/langchain.webp',
-    'graphql': '/src/assets/images/nodejs.webp',
+    'node-js': nodejsImg,
+    'nodejs': nodejsImg,
+    'express': expressjsImg,
+    'django': langchainImg,
+    'flask': langchainImg,
+    'fastapi': langchainImg,
+    'graphql': nodejsImg,
     
     // AI/ML
-    'tensorflow': '/src/assets/images/langchain.webp',
-    'langchain': '/src/assets/images/langchain.webp',
-    'openai': '/src/assets/images/langchain.webp',
-    'vector-dbs': '/src/assets/images/langchain.webp',
+    'tensorflow': langchainImg,
+    'langchain': langchainImg,
+    'openai': langchainImg,
+    'vector-dbs': langchainImg,
     
     // Databases
-    'mongodb': '/src/assets/images/mongodb.jpg',
-    'postgresql': '/src/assets/images/mongodb.jpg',
-    'mysql': '/src/assets/images/mongodb.jpg',
-    'redis': '/src/assets/images/mongodb.jpg',
-    'dynamodb': '/src/assets/images/aws.webp',
-    'pinecone': '/src/assets/images/langchain.webp',
+    'mongodb': mongodbImg,
+    'postgresql': mongodbImg,
+    'mysql': mongodbImg,
+    'redis': mongodbImg,
+    'dynamodb': awsImg,
+    'pinecone': langchainImg,
     
     // Cloud/DevOps
-    'aws': '/src/assets/images/aws.webp',
-    'docker': '/src/assets/images/docker.png',
-    'kubernetes': '/src/assets/images/docker.png',
-    'ci-cd': '/src/assets/images/docker.png',
-    'cicd': '/src/assets/images/docker.png',
+    'aws': awsImg,
+    'docker': dockerImg,
+    'kubernetes': dockerImg,
+    'ci-cd': dockerImg,
+    'cicd': dockerImg,
   };
   
   const skillId = generateId(rawSkill.name);
-  const icon = skillImageMap[skillId] || '/src/assets/images/reactjs.png';
+  const icon = skillImageMap[skillId] || reactjsImg;
   
   // Validate that icon is not empty
   if (!icon || icon.trim() === '') {
@@ -242,7 +257,7 @@ export function mapSkill(rawSkill: RawSkillData): Skill {
     proficiencyLevel: proficiency,
     yearsOfExperience: rawSkill.yearsOfExperience,
     description: `${rawSkill.yearsOfExperience}+ years of professional experience with ${rawSkill.name}. Expert in building scalable, production-ready applications.`,
-    icon: icon || '/src/assets/images/reactjs.png', // Ensure icon is never empty
+    icon: icon || reactjsImg, // Ensure icon is never empty
     isPrime,
     specifications: {
       frameworks: rawSkill.frameworks || [],
@@ -288,23 +303,23 @@ export function mapProject(rawProject: RawProjectData): Project {
     else if (link.type === 'npm') links.live = link.url;
   });
   
-  // Map project names to actual image paths
+  // Map project names to actual image paths (using imported images)
   const projectImageMap: Record<string, string> = {
-    'neuraltalk-ai-platform': '/src/assets/images/neuraltalkai.png',
-    'monster-api-integration': '/src/assets/images/monsterapi.png',
-    'neo-autonomous-ml-platform': '/src/assets/images/heyneo.jpg',
-    'amazon-ml-data-projects': '/src/assets/images/aws.webp',
+    'neuraltalk-ai-platform': neuraltalkai,
+    'monster-api-integration': monsterapi,
+    'neo-autonomous-ml-platform': heyneo,
+    'amazon-ml-data-projects': awsImg,
   };
   
   const projectId = generateId(rawProject.title);
-  const projectImage = projectImageMap[projectId] || '/src/assets/images/reactjs.png';
+  const projectImage = projectImageMap[projectId] || reactjsImg;
   
   // Validate that image is not empty
   if (!projectImage || projectImage.trim() === '') {
     console.warn(`Empty image for project: ${rawProject.title}, using fallback`);
   }
   
-  const images = [projectImage || '/src/assets/images/reactjs.png']; // Ensure image is never empty
+  const images = [projectImage || reactjsImg]; // Ensure image is never empty
   
   return {
     id: projectId,
@@ -600,7 +615,7 @@ export class AmazonPortfolioDataMapper {
         role: 'Machine Learning Data Associate',
         duration: 'Aug 2020 - Aug 2022',
         location: 'Chennai, India',
-        logo: '/src/assets/images/amazon.webp',
+        logo: amazonImg,
         achievements: [
           'Recognized as Top Performer with 2 awards for ML training data projects',
           'Spearheaded POC enhancing team performance by 25%',

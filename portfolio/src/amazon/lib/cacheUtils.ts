@@ -7,10 +7,17 @@
  * Requirements: 10.4
  */
 
+/**
+ * Cache version - increment this when data structure changes
+ * This will automatically invalidate old cache entries
+ */
+const CACHE_VERSION = 2;
+
 interface CacheEntry<T> {
   data: T;
   timestamp: number;
   ttl: number; // Time to live in milliseconds
+  version: number; // Cache version for invalidation
 }
 
 /**
@@ -67,6 +74,7 @@ export function setCache<T>(key: string, data: T, ttl: number): void {
       data,
       timestamp: Date.now(),
       ttl,
+      version: CACHE_VERSION,
     };
 
     localStorage.setItem(key, JSON.stringify(entry));
@@ -81,6 +89,7 @@ export function setCache<T>(key: string, data: T, ttl: number): void {
           data,
           timestamp: Date.now(),
           ttl,
+          version: CACHE_VERSION,
         };
         localStorage.setItem(key, JSON.stringify(entry));
       } catch (retryError) {
@@ -110,6 +119,13 @@ export function getCache<T>(key: string): T | null {
     const entry: CacheEntry<T> = JSON.parse(item);
     const now = Date.now();
     const age = now - entry.timestamp;
+
+    // Check if cache version matches
+    if (!entry.version || entry.version !== CACHE_VERSION) {
+      console.log(`Cache version mismatch for ${key}, invalidating`);
+      localStorage.removeItem(key);
+      return null;
+    }
 
     // Check if expired
     if (age > entry.ttl) {

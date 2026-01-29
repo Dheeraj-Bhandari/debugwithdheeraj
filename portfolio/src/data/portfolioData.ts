@@ -6,6 +6,10 @@
  * This ensures data consistency across all sections.
  */
 
+// Import profile image for proper bundling
+import dheerajKumarImg from '../assets/images/dheeraj_kumar.png';
+import resumePdf from '../assets/resume/Dheeraj_Kumar_SDE.pdf';
+
 /**
  * Personal Information
  */
@@ -15,7 +19,7 @@ export const personalInfo = {
   title: 'Senior Software Engineer | AI/ML Systems Architect',
   bio: "I'm a Senior Software Engineer with 5+ years of experience building scalable AI/ML systems and leading engineering teams. I specialize in full-stack development, LLM applications, distributed systems, and cloud infrastructure.",
   tagline: 'Available for Immediate Hire',
-  profileImage: '/src/assets/images/dheeraj_kumar.png',
+  profileImage: dheerajKumarImg,
 };
 
 /**
@@ -36,7 +40,7 @@ export const contactInfo = {
   linkedin: 'https://linkedin.com/in/debugwithdheeraj',
   twitter: 'https://twitter.com/digitaldk',
   youtube: 'https://youtube.com/@debugwithdheeraj',
-  resume: '/src/assets/resume/Dheeraj_Kumar_SDE.pdf',
+  resume: resumePdf,
 };
 
 /**

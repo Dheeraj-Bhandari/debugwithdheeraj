@@ -1,6 +1,7 @@
 import type { FileSystemNode, Result, PortfolioData } from './types';
 import { FileSystemBuilder } from './FileSystemBuilder';
 import { PortfolioDataMapper } from './PortfolioDataMapper';
+import { personalInfo } from '../../data/portfolioData';
 
 /**
  * VirtualFileSystem manages a virtual file system structure for the terminal

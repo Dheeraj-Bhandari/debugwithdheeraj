@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import awsImg from '../../assets/images/aws.webp';
 
 /**
  * ImageWithFallback Component
@@ -31,7 +32,7 @@ interface ImageWithFallbackProps {
 
 const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   src,
-  fallbackSrc = '/src/assets/images/aws.webp',
+  fallbackSrc = awsImg,
   alt,
   className = '',
   onLoad,
