@@ -15,6 +15,7 @@ import {
 } from '../components/amazon';
 import { portfolioDataMapper } from '../amazon/lib/AmazonPortfolioDataMapper';
 import { personalInfo, contactInfo, developerHighlights } from '../data/portfolioData';
+import { sendNewsletterSubscription } from '../amazon/lib/emailService';
 import type { Skill, Project, SkillBundle, Review, Experience } from '../amazon/types';
 
 const AmazonPortfolio: React.FC = () => {
@@ -73,8 +74,15 @@ const AmazonPortfolio: React.FC = () => {
 
   const handleSubscribe = async (email: string) => {
     console.log('Newsletter subscription:', email);
-    // Newsletter functionality to be implemented in later tasks
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    try {
+      // Send newsletter subscription notification via EmailJS
+      await sendNewsletterSubscription(email);
+      console.log('Successfully subscribed:', email);
+    } catch (error) {
+      console.error('Subscription error:', error);
+      throw error; // Re-throw to show error in UI
+    }
   };
 
   return (
@@ -89,7 +97,7 @@ const AmazonPortfolio: React.FC = () => {
         tagline={personalInfo.tagline}
         profileImage={personalInfo.profileImage}
         onContactClick={handleContactClick}
-        resumeUrl={contactInfo.resume}
+        resumeUrl={contactInfo.amazonResume}
       />
 
       {/* Today's Deals - Featured Skills */}

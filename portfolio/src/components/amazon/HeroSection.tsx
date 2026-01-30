@@ -1,4 +1,5 @@
 import React from 'react';
+import { handleResumeAction } from '../../utils/resumeHandler';
 
 /**
  * HeroSection Component
@@ -65,7 +66,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   resumeUrl = '/resume.pdf',
 }) => {
   const handleResumeClick = () => {
-    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+    handleResumeAction(resumeUrl);
   };
 
   return (

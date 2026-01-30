@@ -9,6 +9,7 @@
 // Import profile image for proper bundling
 import dheerajKumarImg from '../assets/images/dheeraj_kumar.png';
 import resumePdf from '../assets/resume/Dheeraj_Kumar_SDE.pdf';
+import amazonResumePdf from '../assets/resume/Dheeraj_Kumar_Resume_Amazon_2026.pdf';
 
 /**
  * Personal Information
@@ -41,6 +42,7 @@ export const contactInfo = {
   twitter: 'https://twitter.com/digitaldk',
   youtube: 'https://youtube.com/@debugwithdheeraj',
   resume: resumePdf,
+  amazonResume: amazonResumePdf, // Amazon-themed resume for /amazon route
 };
 
 /**

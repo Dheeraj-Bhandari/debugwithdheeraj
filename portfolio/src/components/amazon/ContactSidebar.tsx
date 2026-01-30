@@ -20,6 +20,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
+import { handleResumeAction } from '../../utils/resumeHandler';
 
 interface ContactInfo {
   email: string;
@@ -141,7 +142,7 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
   
   // Handle download resume
   const handleDownloadResume = () => {
-    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+    handleResumeAction(resumeUrl);
   };
   
   if (!isOpen) return null;

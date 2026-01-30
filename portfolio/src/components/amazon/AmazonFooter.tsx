@@ -1,5 +1,6 @@
 import React from 'react';
 import { contactInfo } from '../../data/portfolioData';
+import { createResumeClickHandler } from '../../utils/resumeHandler';
 
 /**
  * AmazonFooter Component
@@ -62,7 +63,7 @@ const AmazonFooter: React.FC<AmazonFooterProps> = ({ onContactClick }) => {
       title: 'Other Portfolios',
       links: [
         { label: 'Terminal Portfolio', href: '/' },
-        { label: 'Download Resume', href: contactInfo.resume, external: true },
+        { label: 'Download Resume', href: contactInfo.amazonResume, external: true },
       ],
     },
   ];
@@ -105,6 +106,9 @@ const AmazonFooter: React.FC<AmazonFooterProps> = ({ onContactClick }) => {
                         {...(link.external && {
                           target: '_blank',
                           rel: 'noopener noreferrer',
+                        })}
+                        {...(link.label === 'Download Resume' && {
+                          onClick: createResumeClickHandler(contactInfo.amazonResume),
                         })}
                         aria-label={link.external ? `${link.label} (opens in new tab)` : link.label}
                       >

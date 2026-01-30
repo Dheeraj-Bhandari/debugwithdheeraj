@@ -368,7 +368,7 @@ const AmazonLayout: React.FC<AmazonLayoutProps> = ({ children }) => {
           },
         }}
         onSendMessage={handleSendMessage}
-        resumeUrl={contactInfo.resume}
+        resumeUrl={contactInfo.amazonResume}
       />
 
       {/* Amazon Footer */}

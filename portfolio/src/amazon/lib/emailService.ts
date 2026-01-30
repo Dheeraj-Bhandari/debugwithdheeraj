@@ -283,3 +283,78 @@ export const testEmailService = async (): Promise<boolean> => {
     return false;
   }
 };
+
+
+/**
+ * Send newsletter subscription notification via EmailJS
+ * 
+ * Sends an email to YOU (digitaldk.in@gmail.com) when someone subscribes to the newsletter.
+ * 
+ * This function reuses the existing NOTIFICATION template (used for checkout form) to avoid
+ * the EmailJS free tier limitation of 2 templates. It formats the newsletter subscription
+ * as a contact form submission.
+ * 
+ * No additional template or environment variable needed - uses existing:
+ * - VITE_EMAILJS_SERVICE_ID
+ * - VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID
+ * - VITE_EMAILJS_PUBLIC_KEY
+ * 
+ * @param email - Subscriber's email address
+ * @returns Promise that resolves when email is sent
+ * @throws Error if EmailJS is not configured or email fails to send
+ */
+export const sendNewsletterSubscription = async (
+  email: string
+): Promise<void> => {
+  // Check if EmailJS is configured
+  if (!isEmailServiceConfigured()) {
+    console.warn('EmailJS is not configured. Newsletter subscription email will not be sent.');
+    console.warn('Please set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY environment variables.');
+    
+    // In development, just log the data instead of throwing
+    if (import.meta.env.DEV) {
+      console.log('Newsletter subscription (dev mode):', { email });
+      return;
+    }
+    
+    throw new Error('Email service is not configured');
+  }
+
+  // Prepare email parameters using the same format as checkout notification
+  // This reuses your existing notification template
+  const templateParams = {
+    from_name: 'Newsletter Subscriber',
+    from_email: email,
+    reply_to: email,
+    company: 'N/A',
+    role: 'Newsletter Subscriber',
+    message: `📧 New newsletter subscription!\n\nSubscriber Email: ${email}\nSubscription Date: ${new Date().toLocaleString()}\n\nThis person wants to receive updates about your projects and tech insights.`,
+    interested_items: 'Newsletter Updates',
+    order_date: new Date().toLocaleString(),
+    item_count: 0,
+  };
+
+  console.log('Sending newsletter subscription notification with params:', {
+    ...templateParams,
+    serviceId: EMAILJS_CONFIG.serviceId,
+    templateId: EMAILJS_CONFIG.notificationTemplateId,
+  });
+
+  try {
+    // Send notification email to YOU using existing notification template
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.serviceId,
+      EMAILJS_CONFIG.notificationTemplateId, // Reuse notification template
+      templateParams
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`EmailJS returned status ${response.status}`);
+    }
+
+    console.log('Newsletter subscription email sent successfully:', response);
+  } catch (error) {
+    console.error('Failed to send newsletter subscription email:', error);
+    throw new Error('Failed to send newsletter subscription notification');
+  }
+};
