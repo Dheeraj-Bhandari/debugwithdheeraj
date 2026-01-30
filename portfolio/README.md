@@ -1,69 +1,34 @@
-# Modern Portfolio Website Template
+# 🚀 Dynamic Portfolio Template
 
-A professional, feature-rich portfolio website template built with modern web technologies. Perfect for developers, engineers, and tech professionals looking to showcase their work.
+A modern, fully customizable portfolio website with multiple themes. Built for developers who want a professional portfolio without writing code - just add your data and deploy!
 
-## 🌟 Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
 
-### Two Unique Themes
-- **Amazon-Inspired Theme**: E-commerce style portfolio with shopping cart metaphor
-- **Terminal Theme**: Developer-focused command-line interface experience
+## ✨ Features
 
-### Core Capabilities
-- ✨ Modern, responsive design (mobile, tablet, desktop)
-- ⚡ Lightning-fast performance with Vite
-- 🎨 Smooth animations with Framer Motion
-- 🎯 SEO optimized with meta tags
-- ♿ WCAG 2.1 AA accessibility compliant
-- 📧 Contact form with EmailJS integration
-- 🔍 Real-time search functionality
-- 🛒 Interactive cart system (Amazon theme)
-- 💻 Virtual file system (Terminal theme)
+- 🎨 **3 Unique Themes**: Amazon-inspired, Terminal CLI, and Modern GUI
+- 📱 **Fully Responsive**: Works on mobile, tablet, and desktop
+- ⚡ **Zero Hardcoding**: All data comes from a single file
+- � *m*SEO Optimized**: Meta tags and social media cards
+- ♿ **Accessible**: WCAG 2.1 AA compliant
+- 📧 **Contact Form**: Integrated EmailJS support
+- � C**Easy Customization**: Edit one file, update entire portfolio
 
-## 🚀 Tech Stack
+## 🎯 Quick Start
 
-- **Framework**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Testing**: Vitest + React Testing Library
-- **Email**: EmailJS
-- **Icons**: React Icons
-
-## 📋 Prerequisites
-
-- Node.js 20.19+ or 22.12+
-- npm or yarn
-- EmailJS account (for contact form)
-
-## 🛠️ Installation & Setup
-
-### 1. Clone and Install
+### 1. Clone & Install
 
 ```bash
-# Navigate to the portfolio directory
-cd portfolio
-
-# Install dependencies
+git clone https://github.com/yourusername/portfolio-template.git
+cd portfolio-template/portfolio
 npm install
 ```
 
-### 2. Configure Environment Variables
+### 2. Add Your Data
 
-Create a `.env` file in the portfolio directory:
-
-```env
-# EmailJS Configuration (Required for contact form)
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID=your_notification_template_id
-VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID=your_auto_reply_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-See `.env.example` for reference.
-
-### 3. Customize Your Data
-
-Edit `src/data/portfolioData.ts` to add your information:
+Edit **one file**: `src/data/portfolioData.ts`
 
 ```typescript
 export const personalInfo = {
@@ -71,250 +36,209 @@ export const personalInfo = {
   role: 'Your Role',
   title: 'Your Professional Title',
   bio: 'Your bio...',
-  // ... more fields
+  profileImage: yourProfileImg,
 };
 
 export const contactInfo = {
   email: 'your.email@example.com',
-  phone: '+1 234-567-8900',
+  github: 'https://github.com/yourusername',
+  linkedin: 'https://linkedin.com/in/yourusername',
   // ... more fields
 };
 
 // Update work experience, projects, skills, etc.
 ```
 
-### 4. Add Your Resume
+### 3. Add Your Assets
 
-Replace the resume file:
 ```bash
-# Add your resume PDF
-cp /path/to/your/resume.pdf src/assets/resume/Your_Name_Resume.pdf
+# Add your profile photo
+src/assets/images/your_photo.png
+
+# Add your resume
+src/assets/resume/Your_Resume.pdf
 ```
 
-Update the path in `portfolioData.ts`:
+Update imports in `portfolioData.ts`:
 ```typescript
-export const contactInfo = {
-  // ...
-  resume: '/src/assets/resume/Your_Name_Resume.pdf',
-};
+import yourProfileImg from '../assets/images/your_photo.png';
+import resumePdf from '../assets/resume/Your_Resume.pdf';
 ```
 
-### 5. Update Images
+### 4. Configure Email (Optional)
 
-Replace profile and project images in `src/assets/images/`:
-- `your_name.png` - Your profile photo
-- Add company logos for work experience
-- Add project screenshots
+Create `.env` file:
 
-Update image references in `portfolioData.ts` and component files.
-
-## 🎨 Customization Guide
-
-### Personal Information
-
-All personal data is centralized in `src/data/portfolioData.ts`. Update these sections:
-
-1. **Personal Info**: Name, role, title, bio
-2. **Contact Info**: Email, phone, social links
-3. **Work Experience**: Companies, roles, achievements
-4. **Projects**: Project details, tech stack, metrics
-5. **Skills**: Technical skills by category
-6. **Stats**: Career highlights and key metrics
-
-### Theme Colors
-
-Edit `tailwind.config.js` to customize colors:
-
-```javascript
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        'amazon-orange': '#FF9900',  // Amazon theme accent
-        'amazon-dark': '#131921',    // Amazon theme dark
-        // Add your custom colors
-      },
-    },
-  },
-};
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID=your_autoreply_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-### Email Configuration
+**EmailJS Setup:**
+1. Create free account at [emailjs.com](https://www.emailjs.com/)
+2. Add email service (Gmail/Outlook)
+3. Create 2 templates:
+   - **Notification**: Sends inquiries to you
+   - **Auto-reply**: Confirms receipt to sender
+4. Copy IDs to `.env`
 
-1. Create an [EmailJS](https://www.emailjs.com/) account
-2. Set up an email service (Gmail, Outlook, etc.)
-3. Create two templates:
-   - **Notification Template**: Sends inquiries to you
-   - **Auto-Reply Template**: Confirms receipt to sender
-4. Add credentials to `.env` file
+See `.env.example` for reference.
 
-See `src/amazon/lib/emailService.ts` for detailed template setup instructions.
-
-## 🏃 Development
+### 5. Run & Deploy
 
 ```bash
-# Start development server
+# Development
 npm run dev
 
-# Open browser at http://localhost:5173
-```
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with UI
-npm run test:ui
-```
-
-## 📦 Build for Production
-
-```bash
-# Build optimized production bundle
+# Build for production
 npm run build
 
-# Preview production build locally
+# Preview production build
 npm run preview
 ```
 
-The optimized build will be in the `dist/` folder.
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-Or connect your GitHub repository to Vercel for automatic deployments.
-
-### Netlify
-
-```bash
-# Build the project
-npm run build
-
-# Deploy via Netlify CLI or drag-and-drop dist/ folder
-```
-
-### Other Platforms
-
-The `dist/` folder can be deployed to:
-- AWS S3 + CloudFront
-- GitHub Pages
-- Firebase Hosting
-- Cloudflare Pages
-- Any static hosting service
+Deploy `dist/` folder to Vercel, Netlify, or any static host.
 
 ## 📁 Project Structure
 
 ```
 portfolio/
 ├── src/
-│   ├── components/          # React components
-│   │   ├── amazon/         # Amazon theme components
-│   │   └── Terminal/       # Terminal theme components
-│   ├── pages/              # Page components
-│   ├── data/               # Portfolio data
-│   │   └── portfolioData.ts # ⭐ Main data file to customize
-│   ├── lib/                # Utility libraries
-│   │   └── terminal/       # Terminal file system logic
-│   ├── amazon/             # Amazon theme logic
-│   │   ├── contexts/       # React contexts
-│   │   ├── lib/            # Utilities and mappers
-│   │   └── types/          # TypeScript types
-│   ├── assets/             # Static assets
-│   │   ├── images/         # Images and logos
-│   │   └── resume/         # Resume PDF
-│   └── App.tsx             # Main app component
-├── public/                 # Public static files
-├── .env                    # Environment variables (create this)
-├── .env.example            # Environment variables template
-└── package.json            # Dependencies and scripts
+│   ├── data/
+│   │   └── portfolioData.ts    ⭐ Edit this file with your data
+│   ├── assets/
+│   │   ├── images/             📸 Add your photos here
+│   │   └── resume/             📄 Add your resume here
+│   ├── components/             🎨 Pre-built components
+│   └── pages/                  📄 Theme pages
+├── .env                        🔐 Create this (see .env.example)
+└── package.json
 ```
 
-## 🎯 Key Files to Customize
+## 🎨 Available Themes
 
-1. **`src/data/portfolioData.ts`** - All your personal data
-2. **`.env`** - EmailJS configuration
-3. **`src/assets/resume/`** - Your resume PDF
-4. **`src/assets/images/`** - Your photos and project images
-5. **`tailwind.config.js`** - Theme colors (optional)
-6. **`index.html`** - Meta tags and SEO
+### 1. Amazon Theme (`/amazon`)
+E-commerce inspired portfolio with shopping cart metaphor
 
-## 🔧 Advanced Customization
+### 2. Terminal Theme (Toggle in GUI)
+Developer-focused CLI experience with virtual file system
 
-### Adding New Sections
+### 3. Modern GUI (`/`)
+Clean, professional portfolio with smooth animations
 
-1. Create a new component in `src/components/`
-2. Import and add to `src/App.tsx` or page components
-3. Update `portfolioData.ts` with new data
+## 📚 Documentation
 
-### Modifying Themes
-
-- **Amazon Theme**: Edit files in `src/components/amazon/`
-- **Terminal Theme**: Edit files in `src/components/Terminal/`
-
-### Adding New Routes
-
-1. Add route in `src/App.tsx`
-2. Create page component in `src/pages/`
-3. Update navigation components
-
-## 📊 Performance
-
-Target metrics:
-- Lighthouse Score: 95+ (all categories)
-- First Contentful Paint: <1.5s
-- Largest Contentful Paint: <2.5s
-- Time to Interactive: <3.5s
-
-## 🌐 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 📝 License
-
-This template is open source and available for personal and commercial use.
+- **[Customization Guide](CUSTOMIZATION_GUIDE.md)** - Detailed customization instructions
+- **[Adding New Routes](ADDING_NEW_ROUTES.md)** - Create themed routes like `/microsoft`
+- **[Data Architecture](DATA_ARCHITECTURE.md)** - Understand data flow
+- **[Setup Guide](SETUP_GUIDE.md)** - Initial setup instructions
+- **[Launch Checklist](LAUNCH_CHECKLIST.md)** - Pre-deployment checklist
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
+We welcome contributions! Here's how you can help:
 
-## 📧 Support
+### Adding New Themes
 
-For questions or issues:
-- Open an issue on GitHub
-- Check existing documentation
-- Review component code for examples
+Want to add a `/microsoft`, `/google`, or custom theme?
 
-## 🙏 Acknowledgments
+1. **Create theme components** in `src/components/yourtheme/`
+2. **Add route** in `src/App.tsx`
+3. **Use centralized data** from `portfolioData.ts`
+4. **Submit PR** with documentation
 
-Built with modern web technologies:
-- React Team for React
-- Evan You for Vite
-- Tailwind Labs for Tailwind CSS
-- Framer for Framer Motion
+**Important**: All data must be dynamically passed from `portfolioData.ts` - no hardcoded text in components!
+
+### Contribution Guidelines
+
+✅ **DO:**
+- Import data from `src/data/portfolioData.ts`
+- Make components reusable and configurable
+- Add TypeScript types for new data structures
+- Update documentation for new features
+- Test on mobile, tablet, and desktop
+- Follow existing code style
+
+❌ **DON'T:**
+- Hardcode personal data in components
+- Break existing themes
+- Add unnecessary dependencies
+- Skip documentation
+
+### Example: Adding a New Theme
+
+```typescript
+// 1. Create component that uses centralized data
+import { personalInfo, projects } from '../data/portfolioData';
+
+const MicrosoftTheme = () => {
+  return (
+    <div>
+      <h1>{personalInfo.name}</h1>
+      {projects.map(project => (
+        <ProjectCard key={project.title} {...project} />
+      ))}
+    </div>
+  );
+};
+
+// 2. Add route in App.tsx
+<Route path="/microsoft" element={<MicrosoftTheme />} />
+```
+
+See [ADDING_NEW_ROUTES.md](ADDING_NEW_ROUTES.md) for detailed guide.
+
+## 🐛 Issues & Support
+
+- **Bug Reports**: [Open an issue](https://github.com/yourusername/portfolio-template/issues)
+- **Feature Requests**: [Start a discussion](https://github.com/yourusername/portfolio-template/discussions)
+- **Questions**: Check [documentation](CUSTOMIZATION_GUIDE.md) first
+
+## 🛠️ Tech Stack
+
+- **React 18** + **TypeScript** - UI framework
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **EmailJS** - Contact form
+- **Vitest** - Testing
+
+## 📊 Performance
+
+- Lighthouse Score: 95+ (all categories)
+- First Contentful Paint: <1.5s
+- Fully responsive and accessible
+
+## 📄 License
+
+MIT License - feel free to use for personal or commercial projects.
+
+## 🌟 Show Your Support
+
+If this template helped you, please:
+- ⭐ Star this repository
+- 🐛 Report bugs
+- 💡 Suggest features
+- 🤝 Contribute improvements
+- 📢 Share with others
+
+## 🚀 Roadmap
+
+- [ ] More theme options (Microsoft, Google, etc.)
+- [ ] Dark/light mode toggle
+- [ ] Blog integration
+- [ ] Multi-language support
+- [ ] CMS integration
+- [ ] More animation presets
+
+## 📧 Contact
+
+Questions? Reach out via [GitHub Issues](https://github.com/yourusername/portfolio-template/issues).
 
 ---
 
-**Made with TypeScript, React, and Tailwind CSS**
+**Built with ❤️ using React, TypeScript, and Tailwind CSS**
 
-⭐ Star this repo if you find it helpful!
+Made by developers, for developers. 🚀

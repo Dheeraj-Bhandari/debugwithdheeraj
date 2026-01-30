@@ -1,6 +1,10 @@
-# Contributing to Portfolio Template
+# Contributing to Dynamic Portfolio Template
 
-Thank you for your interest in contributing! This document provides guidelines for contributing to this project.
+Thank you for your interest in contributing! We welcome contributions that help make this portfolio template better for everyone.
+
+## 🎯 Core Principle
+
+**All data must be dynamic!** Components should never have hardcoded personal data. Everything must come from `src/data/portfolioData.ts`.
 
 ## 🤝 How to Contribute
 
@@ -71,13 +75,49 @@ test: add tests for contact form validation
 - Run `npm test` before submitting PR
 - Ensure all tests pass
 
-## 💻 Code Style
+## 💻 Code Style & Requirements
 
+### Critical Rules
+
+✅ **DO:**
+- Import all data from `src/data/portfolioData.ts`
 - Use TypeScript for type safety
-- Follow existing code formatting
+- Make components reusable and configurable
+- Add proper TypeScript types for new data structures
+- Test on mobile, tablet, and desktop
+- Update documentation for new features
+- Follow existing code patterns
+
+❌ **DON'T:**
+- Hardcode personal data (names, emails, etc.) in components
+- Break existing themes or functionality
+- Add unnecessary dependencies
+- Skip documentation updates
+- Commit `.env` files with credentials
+
+### Example: Correct vs Incorrect
+
+**❌ WRONG - Hardcoded data:**
+```typescript
+const Hero = () => {
+  return <h1>John Doe</h1>; // Hardcoded name
+};
+```
+
+**✅ CORRECT - Dynamic data:**
+```typescript
+import { personalInfo } from '../data/portfolioData';
+
+const Hero = () => {
+  return <h1>{personalInfo.name}</h1>; // Dynamic from data file
+};
+```
+
+### Code Formatting
 - Use meaningful variable names
 - Add comments for complex logic
 - Keep functions small and focused
+- Follow existing component structure
 
 ## 📁 Project Structure
 
@@ -96,23 +136,80 @@ portfolio/
 
 ## 🎯 Areas for Contribution
 
-### High Priority
-- Performance optimizations
-- Accessibility improvements
-- Mobile responsiveness fixes
-- Test coverage expansion
-- Documentation improvements
+### 🔥 High Priority
+- **New Themes**: Add `/microsoft`, `/google`, or other company-inspired themes
+- **Performance**: Optimize bundle size and load times
+- **Accessibility**: Improve WCAG compliance
+- **Mobile**: Fix responsiveness issues
+- **Tests**: Expand test coverage
+- **Documentation**: Improve guides and examples
 
-### Medium Priority
-- New theme variations
-- Additional components
-- Animation enhancements
-- SEO improvements
+### 🎨 Medium Priority
+- **Components**: Add reusable UI components
+- **Animations**: Enhance transitions and effects
+- **Features**: Add blog, CMS integration, dark mode
+- **SEO**: Improve meta tags and social cards
 
-### Low Priority
-- Code refactoring
-- Style tweaks
-- Minor bug fixes
+### 🔧 Low Priority
+- **Refactoring**: Code cleanup and optimization
+- **Styling**: Minor UI improvements
+- **Bug Fixes**: Small issues and edge cases
+
+## 🎨 Adding New Themes
+
+Want to add a new themed route like `/microsoft` or `/google`?
+
+### Step-by-Step Guide
+
+1. **Create theme folder:**
+   ```
+   src/components/microsoft/
+   ├── MicrosoftHeader.tsx
+   ├── MicrosoftHero.tsx
+   ├── MicrosoftProjects.tsx
+   └── index.ts
+   ```
+
+2. **Import data from portfolioData.ts:**
+   ```typescript
+   import { personalInfo, projects, skills } from '../../data/portfolioData';
+   
+   const MicrosoftHero = () => {
+     return (
+       <div>
+         <h1>{personalInfo.name}</h1>
+         <p>{personalInfo.title}</p>
+       </div>
+     );
+   };
+   ```
+
+3. **Create page component:**
+   ```typescript
+   // src/pages/MicrosoftPage.tsx
+   import { MicrosoftHeader, MicrosoftHero } from '../components/microsoft';
+   
+   const MicrosoftPage = () => {
+     return (
+       <div>
+         <MicrosoftHeader />
+         <MicrosoftHero />
+         {/* More components */}
+       </div>
+     );
+   };
+   ```
+
+4. **Add route in App.tsx:**
+   ```typescript
+   <Route path="/microsoft" element={<MicrosoftPage />} />
+   ```
+
+5. **Update documentation:**
+   - Add theme description to README.md
+   - Document any new data fields in CUSTOMIZATION_GUIDE.md
+
+See [ADDING_NEW_ROUTES.md](ADDING_NEW_ROUTES.md) for detailed guide.
 
 ## 🔍 Code Review Process
 
