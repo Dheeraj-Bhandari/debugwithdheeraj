@@ -5,6 +5,7 @@ A modern, fully customizable portfolio website with multiple themes. Built for d
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
+[![GitHub Stars](https://img.shields.io/github/stars/Dheeraj-Bhandari/debugwithdheeraj?style=social)](https://github.com/Dheeraj-Bhandari/debugwithdheeraj)
 
 ## ✨ Features
 
@@ -21,8 +22,8 @@ A modern, fully customizable portfolio website with multiple themes. Built for d
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/yourusername/portfolio-template.git
-cd portfolio-template/portfolio
+git clone https://github.com/Dheeraj-Bhandari/debugwithdheeraj.git
+cd debugwithdheeraj
 npm install
 ```
 
@@ -104,7 +105,7 @@ Deploy `dist/` folder to Vercel, Netlify, or any static host.
 ## 📁 Project Structure
 
 ```
-portfolio/
+debugwithdheeraj/
 ├── src/
 │   ├── data/
 │   │   └── portfolioData.ts    ⭐ Edit this file with your data
@@ -112,9 +113,13 @@ portfolio/
 │   │   ├── images/             📸 Add your photos here
 │   │   └── resume/             📄 Add your resume here
 │   ├── components/             🎨 Pre-built components
+│   │   ├── amazon/             Amazon theme components
+│   │   └── Terminal/           Terminal theme components
 │   └── pages/                  📄 Theme pages
+├── public/                     Static assets
 ├── .env                        🔐 Create this (see .env.example)
-└── package.json
+├── .env.example                Environment variables template
+└── package.json                Dependencies and scripts
 ```
 
 ## 🎨 Available Themes
@@ -130,11 +135,9 @@ Clean, professional portfolio with smooth animations
 
 ## 📚 Documentation
 
-- **[Customization Guide](CUSTOMIZATION_GUIDE.md)** - Detailed customization instructions
-- **[Adding New Routes](ADDING_NEW_ROUTES.md)** - Create themed routes like `/microsoft`
-- **[Data Architecture](DATA_ARCHITECTURE.md)** - Understand data flow
 - **[Setup Guide](SETUP_GUIDE.md)** - Initial setup instructions
 - **[Launch Checklist](LAUNCH_CHECKLIST.md)** - Pre-deployment checklist
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to this project
 
 ## 🤝 Contributing
 
@@ -188,13 +191,13 @@ const MicrosoftTheme = () => {
 <Route path="/microsoft" element={<MicrosoftTheme />} />
 ```
 
-See [ADDING_NEW_ROUTES.md](ADDING_NEW_ROUTES.md) for detailed guide.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guide.
 
 ## 🐛 Issues & Support
 
-- **Bug Reports**: [Open an issue](https://github.com/yourusername/portfolio-template/issues)
-- **Feature Requests**: [Start a discussion](https://github.com/yourusername/portfolio-template/discussions)
-- **Questions**: Check [documentation](CUSTOMIZATION_GUIDE.md) first
+- **Bug Reports**: [Open an issue](https://github.com/Dheeraj-Bhandari/debugwithdheeraj/issues)
+- **Feature Requests**: [Start a discussion](https://github.com/Dheeraj-Bhandari/debugwithdheeraj/discussions)
+- **Questions**: Check [documentation](#-documentation) first
 
 ## 🛠️ Tech Stack
 
@@ -235,7 +238,9 @@ If this template helped you, please:
 
 ## 📧 Contact
 
-Questions? Reach out via [GitHub Issues](https://github.com/yourusername/portfolio-template/issues).
+Questions? Reach out via [GitHub Issues](https://github.com/Dheeraj-Bhandari/debugwithdheeraj/issues).
+
+**Live Demo**: [debugwithdheeraj.com](https://debugwithdheeraj.com)
 
 ---
 
