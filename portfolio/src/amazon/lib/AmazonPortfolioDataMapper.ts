@@ -18,7 +18,11 @@ import type {
   SkillCategory,
   Experience 
 } from '../types';
-import { detailedSkills, projects as sharedProjects } from '../../data/portfolioData';
+import { 
+  detailedSkills, 
+  projects as sharedProjects,
+  amazonExperienceData 
+} from '../../data/portfolioData';
 import {
   cachePortfolioData,
   getCachedPortfolioData,
@@ -605,25 +609,15 @@ export class AmazonPortfolioDataMapper {
   
   /**
    * Gets experience data including Amazon experience
+   * Data source: src/data/portfolioData.ts (amazonExperienceData)
    * Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7
    */
   private getExperienceData(): Experience[] {
     return [
       {
-        id: 'amazon-experience',
-        company: 'Amazon',
-        role: 'Machine Learning Data Associate',
-        duration: 'Aug 2020 - Aug 2022',
-        location: 'Chennai, India',
+        ...amazonExperienceData,
         logo: amazonImg,
-        achievements: [
-          'Recognized as Top Performer with 2 awards for ML training data projects',
-          'Spearheaded POC enhancing team performance by 25%',
-          'Managed quality enhancement projects improving accuracy by 15%',
-          'Streamlined workflows reducing processing time by 30%'
-        ],
         type: 'experience' as const,
-        companyUrl: 'https://www.amazon.com'
       }
     ];
   }

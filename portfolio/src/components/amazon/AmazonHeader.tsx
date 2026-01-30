@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { amazonPortfolioText } from '../../data/portfolioData';
 
 interface AmazonHeaderProps {
   cartItemCount?: number;
@@ -30,6 +31,8 @@ const AmazonHeader: React.FC<AmazonHeaderProps> = ({
     setIsSearchExpanded(!isSearchExpanded);
   };
 
+  const { header } = amazonPortfolioText;
+
   return (
     <header 
       className="amazon-header bg-amazon-dark sticky top-0 z-50"
@@ -41,7 +44,7 @@ const AmazonHeader: React.FC<AmazonHeaderProps> = ({
           {/* Logo */}
           <div 
             className="amazon-logo text-white text-lg sm:text-2xl font-bold hover:text-amazon-orange transition-colors cursor-pointer flex-shrink-0"
-            title="Dheeraj Kumar - Professional Portfolio"
+            title={header.logoTitle}
             role="link"
             tabIndex={0}
             onClick={() => window.location.href = '/amazon'}
@@ -51,10 +54,10 @@ const AmazonHeader: React.FC<AmazonHeaderProps> = ({
                 window.location.href = '/amazon';
               }
             }}
-            aria-label="Dheeraj Kumar - Home"
+            aria-label={header.logoAriaLabel}
           >
-            <span className="hidden sm:inline">Dheeraj Kumar</span>
-            <span className="sm:hidden">DK</span>
+            <span className="hidden sm:inline">{header.logoFull}</span>
+            <span className="sm:hidden">{header.logoShort}</span>
           </div>
           
           {/* Search Bar - Desktop */}
@@ -135,8 +138,8 @@ const AmazonHeader: React.FC<AmazonHeaderProps> = ({
                 }
               }}
             >
-              <div className="text-xs">Hello, Recruiter</div>
-              <div className="text-sm font-bold">Account</div>
+              <div className="text-xs">{header.accountGreeting}</div>
+              <div className="text-sm font-bold">{header.accountLabel}</div>
             </div>
             
             {/* Cart Icon */}

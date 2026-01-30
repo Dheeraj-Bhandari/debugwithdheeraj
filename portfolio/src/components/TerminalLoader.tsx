@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { mainPortfolioText } from '../data/portfolioData'
 
 interface TerminalLoaderProps {
   onComplete: () => void
@@ -10,17 +11,11 @@ const TerminalLoader = ({ onComplete }: TerminalLoaderProps) => {
   const [currentLine, setCurrentLine] = useState(0)
   const [isComplete, setIsComplete] = useState(false)
 
-  const bootSequence = [
-    { text: 'Initializing portfolio system...', delay: 100 },
-    { text: 'Loading user profile: Dheeraj Kumar', delay: 150 },
-    { text: 'Connecting to GitHub... ✓', delay: 120 },
-    { text: 'Fetching projects... ✓', delay: 130 },
-    { text: 'Loading AI/ML credentials... ✓', delay: 110 },
-    { text: 'Compiling 5+ years of experience... ✓', delay: 140 },
-    { text: 'Initializing NeuralTalk AI systems... ✓', delay: 120 },
-    { text: 'Loading 100+ enterprise clients data... ✓', delay: 130 },
-    { text: 'System ready. Welcome!', delay: 200 },
-  ]
+  const { terminalLoader } = mainPortfolioText
+  const bootSequence = terminalLoader.bootSequence.map((text, index) => ({
+    text,
+    delay: 100 + (index % 5) * 10, // Varying delays for natural feel
+  }))
 
   useEffect(() => {
     if (currentLine < bootSequence.length) {
@@ -60,7 +55,7 @@ const TerminalLoader = ({ onComplete }: TerminalLoaderProps) => {
                   <div className="w-3 h-3 rounded-full bg-yellow-500" />
                   <div className="w-3 h-3 rounded-full bg-green-500" />
                 </div>
-                <span className="text-accent font-mono text-sm ml-4">dheeraj@portfolio:~$</span>
+                <span className="text-accent font-mono text-sm ml-4">{mainPortfolioText.terminal.username}@portfolio:~$</span>
               </div>
 
               {/* Boot sequence */}

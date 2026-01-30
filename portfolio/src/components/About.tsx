@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { mainPortfolioText } from '../data/portfolioData'
 
 const About = () => {
+  const { about } = mainPortfolioText;
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const stats = [
@@ -37,7 +39,7 @@ const About = () => {
             className="md:col-span-2 space-y-4 text-gray-300 leading-relaxed"
           >
             <p>
-              I'm a <span className="text-accent font-semibold">Senior Software Engineer</span> with 5+ years of experience building scalable AI/ML systems and leading engineering teams. I specialize in full-stack development, LLM applications, distributed systems, and cloud infrastructure.
+              {about.intro}
             </p>
 
             <div className="bg-terminal border border-accent/20 rounded-lg p-4 font-mono text-sm">

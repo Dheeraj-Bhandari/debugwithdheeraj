@@ -10,6 +10,7 @@ import {
   CommandExecutor,
   PortfolioDataMapper,
 } from '../../lib/terminal';
+import { mainPortfolioText } from '../../data/portfolioData';
 
 // Maximum command history entries (performance optimization)
 const MAX_HISTORY_SIZE = 1000;
@@ -111,6 +112,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
   // Initialize terminal with welcome message
   useEffect(() => {
     if (isOpen && outputLines.length === 0) {
+      const { terminal } = mainPortfolioText;
       const welcomeLines: OutputLine[] = [
         {
           type: 'info',
@@ -119,7 +121,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
         },
         {
           type: 'info',
-          content: '║         Welcome to Dheeraj Kumar\'s Portfolio Terminal        ║',
+          content: `║         ${terminal.welcomeTitle.padEnd(53)}║`,
           timestamp: new Date(),
         },
         {
@@ -450,7 +452,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
               onMinimize={handleMinimize}
               onMaximize={handleMaximize}
               onClose={handleClose}
-              title="Terminal - Dheeraj Kumar"
+              title={mainPortfolioText.terminal.windowTitle}
               onDragStart={handleDragStart}
               onDrag={handleDrag}
               onDragEnd={handleDragEnd}

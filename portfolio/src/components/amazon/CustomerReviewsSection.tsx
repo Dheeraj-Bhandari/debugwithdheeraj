@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Review } from '../../amazon/types';
+import { amazonPortfolioText } from '../../data/portfolioData';
 
 /**
  * CustomerReviewsSection Component
@@ -11,6 +12,8 @@ import type { Review } from '../../amazon/types';
  * - Verified badge for verified reviews
  * - Helpful count
  * - Amazon review styling
+ * 
+ * Data Source: src/data/portfolioData.ts (amazonPortfolioText.customerReviews)
  * 
  * Requirements: 9.1, 9.2, 9.4
  */
@@ -124,6 +127,8 @@ const StarDistribution: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
  * Individual review card component
  */
 const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
+  const { customerReviews } = amazonPortfolioText;
+  
   // Handle both Date objects and serialized date strings
   const reviewDate = typeof review.date === 'string' ? new Date(review.date) : review.date;
   
@@ -157,7 +162,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
         <StarRating rating={review.rating} size="sm" />
         {review.isVerified && (
           <span className="text-xs text-amazon-orange font-bold">
-            ✓ Verified Project
+            ✓ {customerReviews.verifiedBadge}
           </span>
         )}
       </div>
@@ -176,7 +181,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
       <div className="flex items-center gap-4 text-sm text-gray-600">
         <span>{formattedDate}</span>
         <button className="text-amazon-blue hover:text-amazon-orange hover:underline">
-          Helpful ({review.helpful})
+          {customerReviews.helpful} ({review.helpful})
         </button>
       </div>
     </article>
@@ -187,6 +192,8 @@ const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
   reviews,
   aggregateRating,
 }) => {
+  const { customerReviews } = amazonPortfolioText;
+  
   // Calculate aggregate rating if not provided
   const calculatedRating = aggregateRating || 
     (reviews.length > 0 
@@ -209,7 +216,7 @@ const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
             id="customer-reviews-heading"
             className="text-2xl font-bold text-amazon-dark mb-6"
           >
-            Customer Reviews
+            {customerReviews.heading}
           </h2>
 
           {/* Aggregate Rating Summary */}
@@ -228,14 +235,14 @@ const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
                 </div>
               </div>
               <p className="text-gray-700">
-                Based on verified projects and client testimonials
+                {customerReviews.basedOn}
               </p>
             </div>
 
             {/* Star Distribution */}
             <div>
               <h3 className="font-bold text-amazon-dark mb-4">
-                Rating Distribution
+                {customerReviews.ratingDistribution}
               </h3>
               <StarDistribution reviews={reviews} />
             </div>
@@ -244,7 +251,7 @@ const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
           {/* Top Reviews */}
           <div>
             <h3 className="font-bold text-amazon-dark mb-6 text-lg">
-              Top Reviews
+              {customerReviews.topReviews}
             </h3>
             <div>
               {sortedReviews.slice(0, 5).map(review => (
@@ -256,7 +263,7 @@ const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
             {reviews.length > 5 && (
               <div className="text-center pt-4">
                 <button className="text-amazon-blue hover:text-amazon-orange hover:underline font-medium">
-                  See all {reviews.length} reviews
+                  {customerReviews.seeAllReviews.replace('{count}', reviews.length.toString())}
                 </button>
               </div>
             )}

@@ -2,6 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import type { Skill } from '../../amazon/types';
 import { getSkillDocUrl } from '../../amazon/lib/skillDocsUrls';
+import { amazonPortfolioText } from '../../data/portfolioData';
 
 /**
  * TodaysDealsSection Component
@@ -12,6 +13,8 @@ import { getSkillDocUrl } from '../../amazon/lib/skillDocsUrls';
  * - Displays 4 featured skills as ProductCards
  * - Section header with description
  * - "See All Skills" link
+ * 
+ * Data Source: src/data/portfolioData.ts (amazonPortfolioText.todaysDeals)
  * 
  * Requirements: 3.5
  */
@@ -36,6 +39,8 @@ const TodaysDealsSection: React.FC<TodaysDealsSectionProps> = ({
   onAddToCart,
   onSeeAllClick,
 }) => {
+  const { todaysDeals } = amazonPortfolioText;
+  
   const handleSeeAllClick = () => {
     if (onSeeAllClick) {
       onSeeAllClick();
@@ -61,10 +66,10 @@ const TodaysDealsSection: React.FC<TodaysDealsSectionProps> = ({
             id="todays-deals-heading"
             className="text-2xl md:text-3xl font-bold text-amazon-dark mb-2"
           >
-            Today's Deals
+            {todaysDeals.heading}
           </h2>
           <p className="text-base md:text-lg text-gray-600">
-            Featured skills and expertise
+            {todaysDeals.subheading}
           </p>
         </div>
 
@@ -95,7 +100,7 @@ const TodaysDealsSection: React.FC<TodaysDealsSectionProps> = ({
             className="inline-flex items-center gap-2 text-amazon-blue hover:text-amazon-orange hover:underline transition-colors duration-200 font-medium text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:ring-offset-2 rounded px-4 py-2"
             aria-label="See all skills"
           >
-            <span>See All Skills</span>
+            <span>{todaysDeals.seeAllButton}</span>
             <svg 
               className="w-5 h-5" 
               fill="none" 

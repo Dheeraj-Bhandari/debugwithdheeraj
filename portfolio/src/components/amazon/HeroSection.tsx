@@ -1,5 +1,6 @@
 import React from 'react';
 import { handleResumeAction } from '../../utils/resumeHandler';
+import { amazonPortfolioText } from '../../data/portfolioData';
 
 /**
  * HeroSection Component
@@ -11,6 +12,8 @@ import { handleResumeAction } from '../../utils/resumeHandler';
  * - Enhanced professional highlights including AI expertise
  * - "Contact Me" button (opens ContactSidebar)
  * - "View Resume" button (opens PDF in new tab)
+ * 
+ * Data Source: src/data/portfolioData.ts (amazonPortfolioText.hero)
  * 
  * Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 3.1, 3.7, 4.1, 4.2, 4.3, 4.4
  */
@@ -69,6 +72,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     handleResumeAction(resumeUrl);
   };
 
+  const { hero } = amazonPortfolioText;
+
   return (
     <section 
       className="hero-section py-8 md:py-16 px-4 bg-gradient-to-b from-white to-gray-50"
@@ -116,7 +121,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 className="px-6 md:px-8 py-2.5 md:py-3 bg-amazon-orange text-white rounded-lg font-bold text-base md:text-lg hover:bg-amazon-orange-dark transition-colors duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:ring-offset-2"
                 aria-label="Contact me"
               >
-                Contact Me
+                {hero.buttons.contact}
               </button>
 
               {/* View Resume Button */}
@@ -125,16 +130,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 className="px-6 md:px-8 py-2.5 md:py-3 bg-white text-amazon-orange border-2 border-amazon-orange rounded-lg font-bold text-base md:text-lg hover:bg-amazon-orange hover:text-white transition-colors duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:ring-offset-2"
                 aria-label="View resume"
               >
-                View Resume
+                {hero.buttons.resume}
               </button>
             </div>
 
             {/* Enhanced Professional Highlights */}
             <div className="mt-4 md:mt-6 text-xs sm:text-sm text-gray-500 space-y-1">
-              <p>✓ Available for immediate hire</p>
-              <p>✓ Open to remote and on-site opportunities</p>
-              <p>✓ Expert in AI-driven development - building smarter, not harder</p>
-              <p>✓ Proven ability to debug AI-generated code without AI assistance</p>
+              {hero.professionalHighlights.map((highlight, index) => (
+                <p key={index}>✓ {highlight}</p>
+              ))}
             </div>
           </div>
         </div>

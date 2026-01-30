@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope, FaTerminal, FaXTwitter } from 'react-icons/fa6'
 import profileImage from '../assets/images/dheeraj_kumar.png'
 import resumePDF from '../assets/resume/Dheeraj_Kumar_SDE.pdf'
-import { contactInfo } from '../data/portfolioData'
+import { contactInfo, mainPortfolioText } from '../data/portfolioData'
 
 interface HeroProps {
   onToggleTerminal?: () => void
@@ -12,7 +12,8 @@ interface HeroProps {
 const Hero = ({ onToggleTerminal }: HeroProps) => {
   const [text, setText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
-  const fullText = "Senior Software Engineer | AI/ML Systems Architect"
+  const { hero } = mainPortfolioText
+  const fullText = hero.title
 
   useEffect(() => {
     let index = 0
@@ -53,7 +54,7 @@ const Hero = ({ onToggleTerminal }: HeroProps) => {
               <div className="absolute inset-0 bg-gradient-to-r from-accent to-emerald-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
               <img
                 src={profileImage}
-                alt="Dheeraj Kumar - Senior Software Engineer"
+                alt={hero.altText}
                 className="relative w-full h-full rounded-full border-4 border-accent object-cover terminal-shadow"
               />
             </div>
@@ -81,7 +82,7 @@ const Hero = ({ onToggleTerminal }: HeroProps) => {
                 
                 <div className="pl-4 space-y-2 mb-4">
                   <p className="text-white text-2xl md:text-4xl font-bold">
-                    Dheeraj Kumar
+                    {hero.name}
                   </p>
                   <div className="text-accent text-base md:text-lg min-h-[2rem] md:min-h-[2.5rem]">
                     {text}
@@ -95,8 +96,7 @@ const Hero = ({ onToggleTerminal }: HeroProps) => {
                 </div>
                 
                 <p className="pl-4 text-gray-300 leading-relaxed mb-4">
-                  Building scalable AI systems and leading teams to ship production-grade software. 
-                  5+ years of experience turning complex problems into elegant solutions.
+                  {hero.mission}
                 </p>
 
                 <div className="flex items-start gap-2 mt-6">
@@ -184,7 +184,7 @@ const Hero = ({ onToggleTerminal }: HeroProps) => {
 
                 <div className="flex items-center gap-2 pt-4 border-t border-accent/20">
                   <span className="text-accent animate-pulse">●</span>
-                  <span className="text-gray-500 text-xs">Open to solving complex problems & CS discussions</span>
+                  <span className="text-gray-500 text-xs">{hero.status}</span>
                 </div>
               </div>
             </motion.div>

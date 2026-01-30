@@ -2,8 +2,10 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import TypingHeader from './TypingHeader'
+import { mainPortfolioText } from '../data/portfolioData'
 
 const AboutEnhanced = () => {
+  const { about } = mainPortfolioText;
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const stats = [
@@ -50,7 +52,7 @@ const AboutEnhanced = () => {
               transition={{ delay: 0.3 }}
               className="text-gray-300 leading-relaxed text-lg"
             >
-              I'm a <span className="text-accent font-semibold">Senior Software Engineer</span> with 5+ years of experience building scalable AI/ML systems and leading engineering teams. I specialize in full-stack development, LLM applications, distributed systems, and cloud infrastructure.
+              {about.intro}
             </motion.p>
 
             <motion.div

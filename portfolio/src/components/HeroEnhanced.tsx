@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaYoutube, FaEnvelope, FaTerminal } from 'react-i
 import { FaXTwitter } from 'react-icons/fa6'
 import profileImage from '../assets/images/dheeraj_kumar.png'
 import resumePDF from '../assets/resume/Dheeraj_Kumar_SDE.pdf'
-import { contactInfo } from '../data/portfolioData'
+import { contactInfo, mainPortfolioText } from '../data/portfolioData'
 
 const HeroEnhanced = () => {
   const [nameText, setNameText] = useState('')
@@ -12,8 +12,9 @@ const HeroEnhanced = () => {
   const [showCursor, setShowCursor] = useState(true)
   const [nameComplete, setNameComplete] = useState(false)
   
-  const fullName = "Dheeraj Kumar"
-  const fullTitle = "Senior Software Engineer | AI/ML Systems Architect"
+  const { hero } = mainPortfolioText
+  const fullName = hero.name
+  const fullTitle = hero.title
   
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
@@ -155,7 +156,7 @@ const HeroEnhanced = () => {
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 src={profileImage}
-                alt="Dheeraj Kumar - Senior Software Engineer"
+                alt={hero.altText}
                 className="relative w-full h-full rounded-full border-4 border-accent object-cover shadow-2xl shadow-accent/20"
               />
               
@@ -256,8 +257,7 @@ const HeroEnhanced = () => {
                       <span className="text-gray-400">cat mission.txt</span>
                     </div>
                     <p className="pl-4 text-gray-300 leading-relaxed mb-4">
-                      Building scalable AI systems and leading teams to ship production-grade software. 
-                      5+ years of experience turning complex problems into elegant solutions.
+                      {hero.mission}
                     </p>
                   </motion.div>
 
@@ -330,7 +330,7 @@ const HeroEnhanced = () => {
                     >
                       ●
                     </motion.span>
-                    <span className="text-gray-500 text-xs">Open to solving complex problems & CS discussions</span>
+                    <span className="text-gray-500 text-xs">{hero.status}</span>
                   </motion.div>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContact } from '../../amazon/contexts/ContactContext';
+import { amazonPortfolioText } from '../../data/portfolioData';
 
 /**
  * EasterEggSection Component
@@ -10,6 +11,8 @@ import { useContact } from '../../amazon/contexts/ContactContext';
  * - Fictional humorous developer profiles
  * - Easter egg content for entertainment
  * - Professional yet playful tone
+ * 
+ * Data Source: src/data/portfolioData.ts (amazonPortfolioText.easterEgg & fictionalProfiles)
  * 
  * Requirements: 13.1
  */
@@ -35,63 +38,10 @@ interface FictionalProfile {
 }
 
 /**
- * Fictional developer profiles (easter eggs)
- */
-const FICTIONAL_PROFILES: FictionalProfile[] = [
-  {
-    name: "Sarah 'Stack Overflow' Chen",
-    title: "Copy-Paste Engineer",
-    description: "Expert at finding solutions on Stack Overflow and adapting them to your needs. Has memorized every error message known to humanity. 10+ years of Googling experience.",
-    rating: 4.8,
-    projects: 127,
-    avatar: "👩‍💻",
-  },
-  {
-    name: "Bob 'The Debugger' Martinez",
-    title: "Console.log Specialist",
-    description: "Will add console.log() statements until the bug reveals itself. Has never met a problem that couldn't be solved with enough logging. Debugger? Never heard of it.",
-    rating: 4.9,
-    projects: 89,
-    avatar: "🐛",
-  },
-  {
-    name: "Alex 'Async/Await' Johnson",
-    title: "Promise Keeper",
-    description: "Turns callback hell into async heaven. Can explain Promises to your grandmother. Still has nightmares about nested callbacks from 2015.",
-    rating: 5.0,
-    projects: 156,
-    avatar: "⏳",
-  },
-  {
-    name: "Emma 'CSS Wizard' Thompson",
-    title: "Flexbox Whisperer",
-    description: "Can center a div in under 30 seconds. Knows the difference between margin and padding (unlike some people). Has strong opinions about CSS-in-JS.",
-    rating: 4.7,
-    projects: 203,
-    avatar: "🎨",
-  },
-  {
-    name: "Mike 'Merge Conflict' Davis",
-    title: "Git Archaeologist",
-    description: "Specializes in resolving merge conflicts and recovering lost commits. Can read git logs like ancient scrolls. Has never force-pushed to main (okay, maybe once).",
-    rating: 4.6,
-    projects: 94,
-    avatar: "🔀",
-  },
-  {
-    name: "Lisa 'The Optimizer' Park",
-    title: "Performance Perfectionist",
-    description: "Will shave milliseconds off your load time. Obsessed with Lighthouse scores. Dreams in Web Vitals. Has strong feelings about bundle sizes.",
-    rating: 4.9,
-    projects: 112,
-    avatar: "⚡",
-  },
-];
-
-/**
  * Individual profile card component
  */
 const ProfileCard: React.FC<{ profile: FictionalProfile }> = ({ profile }) => {
+  const { easterEgg } = amazonPortfolioText;
   const fullStars = Math.floor(profile.rating);
   const hasHalfStar = profile.rating % 1 >= 0.5;
 
@@ -155,9 +105,9 @@ const ProfileCard: React.FC<{ profile: FictionalProfile }> = ({ profile }) => {
       {/* Fake "View Profile" Button */}
       <button 
         className="w-full mt-4 py-2 px-4 bg-white border-2 border-amazon-orange text-amazon-orange rounded hover:bg-amazon-orange hover:text-white transition-colors duration-200 font-medium text-sm"
-        onClick={() => alert("Just kidding! These are fictional profiles for fun. But Dheeraj is very real and available for hire!")}
+        onClick={() => alert(easterEgg.viewProfileAlert)}
       >
-        View Profile
+        {easterEgg.viewProfileButton}
       </button>
     </div>
   );
@@ -165,6 +115,7 @@ const ProfileCard: React.FC<{ profile: FictionalProfile }> = ({ profile }) => {
 
 const EasterEggSection: React.FC = () => {
   const { openContactSidebar } = useContact();
+  const { easterEgg, fictionalProfiles } = amazonPortfolioText;
   
   return (
     <section 
@@ -179,20 +130,19 @@ const EasterEggSection: React.FC = () => {
             id="easter-egg-heading"
             className="text-3xl font-bold text-amazon-dark mb-2"
           >
-            Customers Who Hired Dheeraj Also Hired
+            {easterEgg.heading}
           </h2>
           <p className="text-lg text-gray-600 mb-4">
-            (Disclaimer: These are fictional profiles for entertainment purposes)
+            {easterEgg.disclaimer}
           </p>
           <div className="inline-block bg-yellow-100 border border-yellow-400 rounded-lg px-4 py-2 text-sm text-yellow-800">
-            <span className="font-bold">Easter Egg Alert!</span> These profiles are jokes. 
-            But if you need a real developer, Dheeraj is your person! 😄
+            <span className="font-bold">{easterEgg.alert.title}</span> {easterEgg.alert.message}
           </div>
         </div>
 
         {/* Profiles Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FICTIONAL_PROFILES.map((profile) => (
+          {fictionalProfiles.map((profile) => (
             <ProfileCard key={profile.name} profile={profile} />
           ))}
         </div>
@@ -200,14 +150,14 @@ const EasterEggSection: React.FC = () => {
         {/* Call to Action */}
         <div className="mt-12 text-center">
           <p className="text-lg text-gray-700 mb-4">
-            Enjoyed the humor? Now let's talk about real work!
+            {easterEgg.callToAction.text}
           </p>
           <button 
             onClick={openContactSidebar}
             className="px-8 py-3 bg-amazon-orange text-white rounded-lg font-bold hover:bg-amazon-orange-dark transition-colors duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:ring-offset-2"
             aria-label="Hire the real developer - open contact sidebar"
           >
-            Hire the Real Developer
+            {easterEgg.callToAction.button}
           </button>
         </div>
       </div>

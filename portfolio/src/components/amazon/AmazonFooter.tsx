@@ -1,5 +1,5 @@
 import React from 'react';
-import { contactInfo } from '../../data/portfolioData';
+import { contactInfo, amazonPortfolioText } from '../../data/portfolioData';
 import { createResumeClickHandler } from '../../utils/resumeHandler';
 
 /**
@@ -29,6 +29,8 @@ interface AmazonFooterProps {
 }
 
 const AmazonFooter: React.FC<AmazonFooterProps> = ({ onContactClick }) => {
+  const { footer } = amazonPortfolioText;
+  
   // Define footer columns with links
   const footerColumns: FooterColumn[] = [
     {
@@ -126,10 +128,10 @@ const AmazonFooter: React.FC<AmazonFooterProps> = ({ onContactClick }) => {
         <div className="border-t border-gray-700 mt-6 md:mt-8 pt-6 md:pt-8">
           <div className="text-center text-xs md:text-sm text-gray-400 space-y-2">
             <p>
-              © {new Date().getFullYear()} Dheeraj Kumar. All rights reserved.
+              {footer.copyright}
             </p>
             <p className="text-xs text-gray-500">
-              Not affiliated with Amazon.com, Inc. This is a creative portfolio presentation.
+              {footer.disclaimer}
             </p>
           </div>
           
@@ -140,7 +142,7 @@ const AmazonFooter: React.FC<AmazonFooterProps> = ({ onContactClick }) => {
               className="text-amazon-orange hover:text-amazon-orange-dark transition-colors duration-200 text-sm font-medium focus:outline-none focus:underline"
               aria-label="Back to top"
             >
-              ↑ Back to Top
+              {footer.backToTop}
             </button>
           </div>
         </div>
